@@ -3,7 +3,6 @@ package jsonpatch
 import (
 	"encoding/json"
 	"reflect"
-	"slices"
 )
 
 // JSONPatch format is specified in RFC 6902
@@ -41,7 +40,7 @@ func (l JSONPatchList) Raw() []byte {
 
 // List returns a copy of the underlying JSONPatch slice
 func (l JSONPatchList) List() []JSONPatch {
-	return slices.Clone(l.list)
+	return append(l.list[:0:0], l.list...)
 }
 
 // CreateJSONPatch compares two JSON data structures and creates a JSONPatch according to RFC 6902
